@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { TrexArrayI } from '../interfaces/trex-array.interface';
+import { BoardI } from '../interfaces/board.interface';
 
 @Injectable()
 export class DataService {
-  arr: TrexArrayI[] = [];
+  arr: BoardI[] = [];
 }
