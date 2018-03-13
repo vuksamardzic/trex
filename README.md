@@ -1,2 +1,0 @@
-# trex
-Trello like clone
