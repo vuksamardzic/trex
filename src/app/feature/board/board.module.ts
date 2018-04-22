@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from '../../shared/shared.module';
 import { BoardRootComponent } from './components/board-root/board-root.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    SharedModule
   ],
   declarations: [BoardRootComponent]
 })
