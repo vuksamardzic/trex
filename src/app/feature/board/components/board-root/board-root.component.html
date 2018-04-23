@@ -1,3 +1,10 @@
-<p>
-  board-root works!
-</p>
+<ul>
+  <li *ngFor="let board of boards" (click)="onBoardClick(board.id)">{{ board.name }}</li>
+</ul>
+
+<p>{{ board | json }}</p>
+
+<button (click)="createBoard()">create</button>
+
+<input type="text" name="boardName" [(ngModel)]="boardName">
+<button (click)="editBoard(1, boardName)">edit</button>
