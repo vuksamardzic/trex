@@ -1,0 +1,16 @@
+header {
+  background-color: #026aa7;
+  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  a {
+    opacity: 0.6;
+    &:hover {
+      opacity: 0.8;
+    }
+    transition: 300ms opacity;
+  }
+  img {
+    vertical-align: middle;
+  }
+}
