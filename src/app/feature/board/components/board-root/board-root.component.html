@@ -1,10 +1,19 @@
-<ul>
-  <li *ngFor="let board of boards" (click)="onBoardClick(board.id)">{{ board.name }}</li>
-</ul>
-
-<p>{{ board | json }}</p>
-
-<button (click)="createBoard()">create</button>
-
-<input type="text" name="boardName" [(ngModel)]="boardName">
-<button (click)="editBoard(1, boardName)">edit</button>
+<div class="board-root">
+  <h2>
+    <i class="icon-airplay"></i>Boards</h2>
+  <p (click)="toggleBoardForm()" *ngIf="!showBoardFrom">Create new board
+    <i class="icon-add"></i>
+  </p>
+  <p (click)="toggleBoardForm()" *ngIf="showBoardFrom">Hide board form
+    <i class="icon-expand_less"></i>
+  </p>
+  <form *ngIf="showBoardFrom" #boardForm="ngForm" novalidate (submit)="submitBoardForm(boardForm)">
+    <input type="text" name="boardName" [(ngModel)]="boardName">
+    <input type="submit" value="Create">
+  </form>
+  <ul>
+    <li *ngFor="let board of boards">
+      <t-board-content [name]="board.name"></t-board-content>
+    </li>
+  </ul>
+</div>

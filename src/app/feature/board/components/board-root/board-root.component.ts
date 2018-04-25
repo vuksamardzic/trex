@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { HttpService } from '../../../../core/services/http.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { HttpService } from '../../../../core/services/http.service';
 })
 export class BoardRootComponent implements OnInit {
   boards: any[] = [];
-  board: Object = {};
-  boardName: string = 'xem';
   errorMessage: string;
+  showBoardFrom: boolean = true;
+  boardName: string = '';
 
   constructor(private httpService: HttpService) { }
 
@@ -23,7 +24,7 @@ export class BoardRootComponent implements OnInit {
       .subscribe(data => {
         this.boards = data.data;
       },
-        error => console.log(error)
+        error => this.errorMessage = <any>error
       );
   }
 
@@ -31,27 +32,40 @@ export class BoardRootComponent implements OnInit {
     this.httpService
       .getBoard(id)
       .subscribe(
-        res => this.board = res.data,
+        res => {
+          console.log(res);
+        },
         error => this.errorMessage = <any>error
       );
   }
 
-  createBoard() {
-    this.httpService.createBoard('vuk')
+  createBoard(name) {
+    this.httpService.createBoard(name)
       .subscribe(res => {
-        debugger;
-      });
+        this.getBoards();
+        console.log('done', res);
+      },
+        error => this.errorMessage = <any>error
+      );
   }
 
   editBoard(id, name): void {
     this.httpService.editBoard(id, name)
       .subscribe(
         res => {
-          this.board = res;
           this.getBoards();
         },
         error => this.errorMessage = <any>error
       );
+  }
+
+  toggleBoardForm(): void {
+    this.showBoardFrom = !this.showBoardFrom;
+  }
+
+  submitBoardForm(form: NgForm): void {
+    this.createBoard(form.value.boardName);
+    form.controls['boardName'].setValue('');
   }
 
 }
