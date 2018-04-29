@@ -1,19 +1,19 @@
 <div class="board-root">
   <h2>
-    <i class="icon-airplay"></i>Boards</h2>
+    <i class="icon-board"></i>Boards</h2>
   <p (click)="toggleBoardForm()" *ngIf="!showBoardFrom">Create new board
     <i class="icon-add"></i>
   </p>
   <p (click)="toggleBoardForm()" *ngIf="showBoardFrom">Hide board form
-    <i class="icon-expand_less"></i>
+    <i class="icon-up"></i>
   </p>
-  <form *ngIf="showBoardFrom" #boardForm="ngForm" novalidate (submit)="submitBoardForm(boardForm)">
-    <input type="text" name="boardName" [(ngModel)]="boardName">
+  <form *ngIf="showBoardFrom" #boardForm="ngForm" autocomplete="off" novalidate (submit)="submitBoardForm(boardForm)">
+    <input type="text" name="board-name" [(ngModel)]="boardName" title="board-name">
     <input type="submit" value="Create">
   </form>
-  <ul>
-    <li *ngFor="let board of boards">
-      <t-board-content [name]="board.name"></t-board-content>
+  <ul [ngClass]="{'hide': boardCrudService.loader}">
+    <li *ngFor="let board of boardCrudService.boards">
+      <t-board-content [board]="board"></t-board-content>
     </li>
   </ul>
 </div>

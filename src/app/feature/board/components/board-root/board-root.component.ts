@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpService } from '../../../../core/services/http.service';
+import { BoardCrudService } from '../../../../core/services/board-crud.service';
 
 @Component({
   selector: 't-board-root',
@@ -8,55 +8,19 @@ import { HttpService } from '../../../../core/services/http.service';
   styleUrls: ['./board-root.component.scss']
 })
 export class BoardRootComponent implements OnInit {
-  boards: any[] = [];
-  errorMessage: string;
-  showBoardFrom: boolean = true;
-  boardName: string = '';
+  showBoardFrom = false;
 
-  constructor(private httpService: HttpService) { }
+  constructor(public boardCrudService: BoardCrudService) {
+  }
 
   ngOnInit() {
-    this.getBoards();
+    this.boardCrudService.execGetBoards();
   }
 
-  getBoards(): void {
-    this.httpService.getBoards()
-      .subscribe(data => {
-        this.boards = data.data;
-      },
-        error => this.errorMessage = <any>error
-      );
-  }
-
-  onBoardClick(id: number): void {
-    this.httpService
-      .getBoard(id)
-      .subscribe(
-        res => {
-          console.log(res);
-        },
-        error => this.errorMessage = <any>error
-      );
-  }
-
-  createBoard(name) {
-    this.httpService.createBoard(name)
-      .subscribe(res => {
-        this.getBoards();
-        console.log('done', res);
-      },
-        error => this.errorMessage = <any>error
-      );
-  }
-
-  editBoard(id, name): void {
-    this.httpService.editBoard(id, name)
-      .subscribe(
-        res => {
-          this.getBoards();
-        },
-        error => this.errorMessage = <any>error
-      );
+  createBoard(name): void {
+    if (name) {
+      this.boardCrudService.execCreateBoard(name);
+    }
   }
 
   toggleBoardForm(): void {
@@ -64,8 +28,8 @@ export class BoardRootComponent implements OnInit {
   }
 
   submitBoardForm(form: NgForm): void {
-    this.createBoard(form.value.boardName);
-    form.controls['boardName'].setValue('');
+    this.boardCrudService.loader = true;
+    this.createBoard(form.value['board-name']);
+    form.controls['board-name'].setValue('');
   }
-
 }
