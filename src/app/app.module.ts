@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BoardModule } from './feature/board/board.module';
-import { HttpService } from './core/services/http.service';
 
 
 @NgModule({
@@ -23,7 +22,7 @@ import { HttpService } from './core/services/http.service';
     AppRoutingModule,
     BoardModule
   ],
-  providers: [HttpService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
