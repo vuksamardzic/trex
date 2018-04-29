@@ -1,13 +1,15 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {ConfigService} from './config.service';
-import {IBoard} from '../interfaces/iboard.interface';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { ConfigService } from './config.service';
+import { IBoard } from '../interfaces/iboard.interface';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class BoardCrudService {
   boards: IBoard[] = [];
   errorMessage: string;
+  loader = false;
 
   constructor(private http: HttpClient, private config: ConfigService) {
   }
@@ -41,6 +43,7 @@ export class BoardCrudService {
     this.getBoards()
       .subscribe(
         res => {
+          this.loader = false;
           this.boards = res.data;
         },
         error => this.errorMessage = <any>error
