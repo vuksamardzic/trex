@@ -1,15 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ConfigService {
-  url: string = 'http://localhost:8000/v1';
+  url = 'http://localhost:8000/v1';
   routes = {
-    createBoard: '/boards',
-    getBoards: '/boards',
-    editBoard: '/boards',
-    deleteBoard: '/boards'
+    boards: {
+      create: '/boards',
+      read: '/boards',
+      edit: (id) => `/boards/${id}`,
+      delete: (id) => `/boards/${id}`
+    }
+  };
+
+  constructor() {
   }
-  constructor() { }
 
   getAbsolutePath(route: string = ''): string {
     return this.url + route;
