@@ -1,3 +1,8 @@
-<p>
-  board-content works!
-</p>
+<form novalidate autocomplete="off" [ngClass]="{'in-progress': editing}">
+  <input type="text" name="board-name" [(ngModel)]="board.name" [disabled]="!editing" (blur)="editBoard()"
+         title="board-name" (keypress)="checkEnterKeypress($event)">
+  <div class="action-container">
+    <i class="icon-edit" (click)="editing = true"></i>
+    <i class="icon-delete" (click)="deleteBoard()"></i>
+  </div>
+</form>
