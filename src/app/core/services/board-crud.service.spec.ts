@@ -1,11 +1,14 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { BoardCrudService } from './board-crud.service';
+import { ConfigService } from './config.service';
 
 describe('BoardCrudService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BoardCrudService]
+      providers: [BoardCrudService, ConfigService],
+      imports: [HttpClientTestingModule]
     });
   });
 
