@@ -5,13 +5,12 @@ import { BoardCrudService } from '../../../../core/services/board-crud.service';
 @Component({
   selector: 't-board-root',
   templateUrl: './board-root.component.html',
-  styleUrls: ['./board-root.component.scss']
+  styleUrls: [ './board-root.component.scss' ]
 })
 export class BoardRootComponent implements OnInit {
   showBoardFrom = false;
 
-  constructor(public boardCrudService: BoardCrudService) {
-  }
+  constructor(public boardCrudService: BoardCrudService) { }
 
   ngOnInit() {
     this.boardCrudService.execGetBoards();
@@ -29,7 +28,7 @@ export class BoardRootComponent implements OnInit {
 
   submitBoardForm(form: NgForm): void {
     this.boardCrudService.loader = true;
-    this.createBoard(form.value['board-name']);
-    form.controls['board-name'].setValue('');
+    this.createBoard(form.value[ 'board-name' ]);
+    form.controls[ 'board-name' ].setValue('');
   }
 }

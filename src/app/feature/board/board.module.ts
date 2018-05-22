@@ -6,12 +6,11 @@ import { BoardContentComponent } from './components/board-content/board-content.
 
 @NgModule({
   imports: [
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     BoardRootComponent,
     BoardContentComponent
   ]
 })
-export class BoardModule {
-}
+export class BoardModule { }

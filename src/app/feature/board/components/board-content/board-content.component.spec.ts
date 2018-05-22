@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { BoardCrudService } from '../../../../core/services/board-crud.service';
 import { ConfigService } from '../../../../core/services/config.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BoardContentComponent', () => {
   let component: BoardContentComponent;
@@ -13,7 +14,7 @@ describe('BoardContentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, HttpClientTestingModule],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule],
       providers: [ConfigService, BoardCrudService],
       declarations: [BoardContentComponent]
     })

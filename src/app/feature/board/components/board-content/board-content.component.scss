@@ -5,7 +5,7 @@ form {
   background-color: #e7e9ea;
   border-radius: 3px;
   height: 100px;
-  cursor: pointer;
+  cursor: default;
   &:hover {
     .action-container {
       right: 15px;
@@ -14,7 +14,7 @@ form {
   &.in-progress {
     &:hover {
       .action-container {
-        right: -50px;
+        right: -60px;
       }
     }
   }
@@ -38,12 +38,13 @@ form {
 
   .action-container {
     position: absolute;
-    right: -50px;
+    right: -60px;
     top: 14px;
     transition: 0.3s right;
     i {
       font-size: 15px;
       color: #5f6669;
+      cursor: pointer;
     }
   }
 }

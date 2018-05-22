@@ -2,7 +2,8 @@
   <input type="text" name="board-name" [(ngModel)]="board.name" [disabled]="!editing" (blur)="editBoard()"
          title="board-name" (keypress)="checkEnterKeypress($event)">
   <div class="action-container">
-    <i class="icon-edit" (click)="editing = true"></i>
-    <i class="icon-delete" (click)="deleteBoard()"></i>
+    <i class="icon-board" (click)="navigateToBoard()" title="See board."></i>
+    <i class="icon-edit" (click)="editing = true" title="Edit board."></i>
+    <i class="icon-delete" (click)="deleteBoard()" title="Delete board."></i>
   </div>
 </form>
