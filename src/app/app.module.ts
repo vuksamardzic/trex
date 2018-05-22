@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BoardModule } from './feature/board/board.module';
+import { ListModule } from './feature/list/list.module';
 
 
 @NgModule({
@@ -19,10 +20,10 @@ import { BoardModule } from './feature/board/board.module';
     BrowserModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule,
-    BoardModule
+    BoardModule,
+    ListModule,
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

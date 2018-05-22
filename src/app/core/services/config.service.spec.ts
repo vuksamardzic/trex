@@ -12,4 +12,10 @@ describe('ConfigService', () => {
   it('should be created', inject([ConfigService], (service: ConfigService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('getAbsolutePath(str) should return string', inject(
+    [ConfigService], (service: ConfigService) => {
+      expect(service.getAbsolutePath('/boards/1')).toBe('http://localhost:8000/v1/boards/1');
+    }
+  ));
 });

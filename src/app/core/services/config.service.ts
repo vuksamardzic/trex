@@ -9,6 +9,12 @@ export class ConfigService {
       read: '/boards',
       edit: (id) => `/boards/${id}`,
       delete: (id) => `/boards/${id}`
+    },
+    boardLists: {
+      create: (id) => `/boards/${id}`,
+      read: (id) => `/boards/${id}`,
+      edit: (id) => `/boards/${id}`,
+      delete: (id) => `/boards/${id}`
     }
   };
 

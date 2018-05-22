@@ -11,15 +11,17 @@ export class BoardCrudService {
   errorMessage: string;
   loader = false;
 
-  constructor(private http: HttpClient, private config: ConfigService) {
-  }
+  constructor(
+    private http: HttpClient,
+    private config: ConfigService
+  ) { }
 
   static handleError(err: HttpErrorResponse) {
     return Observable.throw(err.message);
   }
 
   createBoard(name: string): Observable<any> {
-    return this.http.post(this.config.getAbsolutePath(this.config.routes.boards.create), {name: name})
+    return this.http.post(this.config.getAbsolutePath(this.config.routes.boards.create), { name: name })
       .catch(BoardCrudService.handleError);
   }
 
@@ -51,7 +53,7 @@ export class BoardCrudService {
   }
 
   editBoard(id: number, name: string): Observable<any> {
-    return this.http.put(this.config.getAbsolutePath(this.config.routes.boards.edit(id)), {name: name})
+    return this.http.put(this.config.getAbsolutePath(this.config.routes.boards.edit(id)), { name: name })
       .catch(BoardCrudService.handleError);
   }
 
