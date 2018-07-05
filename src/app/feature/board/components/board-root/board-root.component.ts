@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { BoardCrudService } from '../../../../core/services/board-crud.service';
 
 @Component({
@@ -10,25 +9,22 @@ import { BoardCrudService } from '../../../../core/services/board-crud.service';
 export class BoardRootComponent implements OnInit {
   showBoardFrom = false;
 
-  constructor(public boardCrudService: BoardCrudService) { }
+  constructor(public boardCrudService: BoardCrudService) {
+  }
 
   ngOnInit() {
     this.boardCrudService.execGetBoards();
   }
 
-  createBoard(name): void {
-    if (name) {
-      this.boardCrudService.execCreateBoard(name);
-    }
-  }
 
   toggleBoardForm(): void {
     this.showBoardFrom = !this.showBoardFrom;
   }
 
-  submitBoardForm(form: NgForm): void {
-    this.boardCrudService.loader = true;
-    this.createBoard(form.value[ 'board-name' ]);
-    form.controls[ 'board-name' ].setValue('');
+  submitBoardForm(form: HTMLFormElement): void {
+    if (form.value[ 'board-name' ]) {
+      this.boardCrudService.execCreateBoard(form.value[ 'board-name' ]);
+      form.reset();
+    }
   }
 }

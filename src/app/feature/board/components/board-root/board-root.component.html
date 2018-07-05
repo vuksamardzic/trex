@@ -7,8 +7,15 @@
   <p (click)="toggleBoardForm()" *ngIf="showBoardFrom">Hide board form
     <i class="icon-up"></i>
   </p>
-  <form *ngIf="showBoardFrom" #boardForm="ngForm" autocomplete="off" novalidate (submit)="submitBoardForm(boardForm)">
-    <input type="text" name="board-name" [(ngModel)]="boardName" title="board-name">
+  <form *ngIf="showBoardFrom"
+        #boardForm="ngForm"
+        autocomplete="off"
+        novalidate
+        (submit)="submitBoardForm(boardForm)">
+    <input type="text"
+           name="board-name"
+           ngModel
+           title="board-name">
     <input type="submit" value="Create">
   </form>
   <ul [ngClass]="{'hide': boardCrudService.loader}">
