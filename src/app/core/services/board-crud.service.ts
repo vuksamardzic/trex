@@ -14,18 +14,11 @@ export class BoardCrudService {
   constructor(
     private http: HttpClient,
     private config: ConfigService
-  ) { }
-
-  static handleError(err: HttpErrorResponse) {
-    return Observable.throw(err.message);
-  }
-
-  createBoard(name: string): Observable<any> {
-    return this.http.post(this.config.getAbsolutePath(this.config.routes.boards.create), { name: name })
-      .catch(BoardCrudService.handleError);
+  ) {
   }
 
   execCreateBoard(name: string): void {
+    this.loader = true;
     this.createBoard(name)
       .subscribe(
         res => {
@@ -36,28 +29,20 @@ export class BoardCrudService {
       );
   }
 
-  getBoards(): Observable<any> {
-    return this.http.get(this.config.getAbsolutePath(this.config.routes.boards.read))
-      .catch(BoardCrudService.handleError);
-  }
-
   execGetBoards(): void {
+    this.loader = true;
     this.getBoards()
       .subscribe(
         res => {
           this.loader = false;
-          this.boards = res.data;
+          this.boards = res;
         },
         error => this.errorMessage = <any>error
       );
   }
 
-  editBoard(id: number, name: string): Observable<any> {
-    return this.http.put(this.config.getAbsolutePath(this.config.routes.boards.edit(id)), { name: name })
-      .catch(BoardCrudService.handleError);
-  }
-
-  execEditBoard(id: number, name: string): void {
+  execEditBoard(id: string, name: string): void {
+    this.loader = true;
     this.editBoard(id, name)
       .subscribe(
         res => {
@@ -68,12 +53,8 @@ export class BoardCrudService {
       );
   }
 
-  deleteBoard(id: number) {
-    return this.http.delete(this.config.getAbsolutePath(this.config.routes.boards.delete(id)))
-      .catch(BoardCrudService.handleError);
-  }
-
-  execDeleteBoard(id: number): void {
+  execDeleteBoard(id: string): void {
+    this.loader = true;
     this.deleteBoard(id)
       .subscribe(
         res => {
@@ -83,4 +64,36 @@ export class BoardCrudService {
         error => this.errorMessage = <any>error
       );
   }
+
+  private createBoard(name: string): Observable<any> {
+    const body = {
+      name: name
+    };
+    return this.http.post(this.config.getAbsolutePath(this.config.routes.board.create), body)
+      .catch(this.handleError);
+  }
+
+  private getBoards(): Observable<any> {
+    return this.http.get(this.config.getAbsolutePath(this.config.routes.board.read))
+      .catch(this.handleError);
+  }
+
+  private editBoard(id: string, name: string): Observable<any> {
+    const body = {
+      name: name
+    };
+    return this.http.put(this.config.getAbsolutePath(this.config.routes.board.edit(id)), body)
+      .catch(this.handleError);
+  }
+
+  private deleteBoard(id: string) {
+    return this.http.delete(this.config.getAbsolutePath(this.config.routes.board.delete(id)))
+      .catch(this.handleError);
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    console.log('board crud err: ', err);
+    return Observable.throw(err.message);
+  }
+
 }
