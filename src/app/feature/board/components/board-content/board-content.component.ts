@@ -19,7 +19,6 @@ export class BoardContentComponent implements OnInit {
   editBoard(): void {
     if (this.editing) {
       this.editing = false;
-      this.boardCrudService.loader = true;
       this.boardCrudService.execEditBoard(this.board.id, this.board.name);
     }
   }
@@ -27,7 +26,6 @@ export class BoardContentComponent implements OnInit {
   checkEnterKeypress(ev: KeyboardEvent): void {
     if (ev.charCode === 13) {
       this.editing = false;
-      this.boardCrudService.loader = true;
       this.boardCrudService.execEditBoard(this.board.id, this.board.name);
     }
   }
@@ -40,7 +38,6 @@ export class BoardContentComponent implements OnInit {
   }
 
   deleteBoard(): void {
-    this.boardCrudService.loader = true;
     this.boardCrudService.execDeleteBoard(this.board.id);
   }
 }

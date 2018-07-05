@@ -1,6 +1,11 @@
 <form novalidate autocomplete="off" [ngClass]="{'in-progress': editing}">
-  <input type="text" name="board-name" [(ngModel)]="board.name" [disabled]="!editing" (blur)="editBoard()"
-         title="board-name" (keypress)="checkEnterKeypress($event)">
+  <input type="text"
+         title="board-name"
+         name="board-name"
+         [(ngModel)]="board.name"
+         [disabled]="!editing"
+         (blur)="editBoard()"
+         (keypress)="checkEnterKeypress($event)">
   <div class="action-container">
     <i class="icon-board" (click)="navigateToBoard()" title="See board."></i>
     <i class="icon-edit" (click)="editing = true" title="Edit board."></i>
