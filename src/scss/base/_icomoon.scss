@@ -1,0 +1,66 @@
+$icomoon-font-path: './assets/fonts' !default;
+
+$icon-add: \e145;
+$icon-board: \e14f;
+$icon-edit: \e254;
+$icon-delete: \e872;
+$icon-up: \e316;
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('#{$icomoon-font-path}/icomoon.eot?1dgucu');
+  src: url('#{$icomoon-font-path}/icomoon.eot?1dgucu#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/icomoon.ttf?1dgucu') format('truetype'),
+  url('#{$icomoon-font-path}/icomoon.woff?1dgucu') format('woff'),
+  url('#{$icomoon-font-path}/icomoon.svg?1dgucu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^='icon-'], [class*=' icon-'] {
+  font-family: 'icomoon', sans-serif !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@function unicode($str) {
+  @return unquote('\'') + $str + unquote('\'');
+}
+
+.icon-add {
+  &:before {
+    content: unicode($icon-add);
+  }
+}
+
+.icon-board {
+  &:before {
+    content: unicode($icon-board);
+  }
+}
+
+.icon-edit {
+  &:before {
+    content: unicode($icon-edit);
+  }
+}
+
+.icon-delete {
+  &:before {
+    content: unicode($icon-delete);
+  }
+}
+
+.icon-up {
+  &:before {
+    content: unicode($icon-up);
+  }
+}
