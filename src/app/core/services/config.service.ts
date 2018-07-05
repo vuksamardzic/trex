@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ConfigService {
-  url = 'http://localhost:8000/v1';
+  url = 'https://trex-api.herokuapp.com/api/v1';
   routes = {
-    boards: {
-      create: '/boards',
-      read: '/boards',
-      edit: (id) => `/boards/${id}`,
-      delete: (id) => `/boards/${id}`
+    board: {
+      create: '/board',
+      read: '/board',
+      edit: (id) => `/board/${id}`,
+      delete: (id) => `/board/${id}`
     },
     boardLists: {
-      create: (id) => `/boards/${id}`,
-      read: (id) => `/boards/${id}`,
-      edit: (id) => `/boards/${id}`,
-      delete: (id) => `/boards/${id}`
+      create: (id) => `/board/${id}`,
+      read: (id) => `/board/${id}`,
+      edit: (id) => `/board/${id}`,
+      delete: (id) => `/board/${id}`
     }
   };
 
