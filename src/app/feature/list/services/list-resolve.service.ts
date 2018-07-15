@@ -5,10 +5,11 @@ import { ListCrudService } from './list-crud.service';
 @Injectable()
 export class ListResolveService implements Resolve<any> {
 
-  constructor(private listCrudService: ListCrudService) { }
+  constructor(private listCrudService: ListCrudService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const id = +route.paramMap.get('id');
+    const id = route.paramMap.get('id');
     return this.listCrudService.getLists(id);
   }
 

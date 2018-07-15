@@ -5,33 +5,35 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
-import { IBoard } from '../../../core/interfaces/iboard.interface';
+import { IBoard } from '../../../core/interfaces/board.interface';
 
 @Injectable()
 export class ListCrudService {
   lists: IBoard[] = [];
-  errorMessage: string;
 
-  constructor(private http: HttpClient, private config: ConfigService) { }
+  constructor(
+    private http: HttpClient,
+    private config: ConfigService
+  ) {
+  }
 
-  static handleError(err: HttpErrorResponse) {
+  createList(id: string, body: any): Observable<IBoard> {
+    return this.http.post(this.config.getAbsolutePath(this.config.routes.list.create(id)), body)
+      .catch(this.handleError);
+  }
+
+  createCard(id: string, body: any): Observable<IBoard> {
+    return this.http.post(this.config.getAbsolutePath(this.config.routes.card.create(id)), body)
+      .catch(this.handleError);
+  }
+
+  getLists(id: string): Observable<IBoard> {
+    return this.http.get(this.config.getAbsolutePath(this.config.routes.list.read(id)))
+      .catch(this.handleError);
+  }
+
+  private handleError(err: HttpErrorResponse) {
     console.log(err.message);
     return Observable.throw(err.message);
-  }
-
-  getLists(id: number): Observable<IBoard> {
-    return this.http.get(this.config.getAbsolutePath(this.config.routes.boardLists.read(id)))
-      .map((res: any) => res.data)
-      .catch(ListCrudService.handleError);
-  }
-
-  execGetLists(id: number): void {
-    this.getLists(id)
-      .subscribe(
-        res => {
-          // todo handle response
-        },
-        error => this.errorMessage = <any>error
-      );
   }
 }
