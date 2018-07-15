@@ -10,11 +10,16 @@ export class ConfigService {
       edit: (id) => `/board/${id}`,
       delete: (id) => `/board/${id}`
     },
-    boardLists: {
-      create: (id) => `/board/${id}`,
-      read: (id) => `/board/${id}`,
-      edit: (id) => `/board/${id}`,
-      delete: (id) => `/board/${id}`
+    list: {
+      create: (id) => `/list/${id}`,
+      read: (id) => `/list/${id}`,
+      edit: (id) => `/list/${id}`,
+      delete: (id) => `/list/${id}`
+    },
+    card: {
+      create: (id) => `/card/${id}`,
+      edit: (id) => `/card/${id}`,
+      delete: (id) => `/card/${id}`
     }
   };
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ConfigService } from './config.service';
-import { IBoard } from '../interfaces/iboard.interface';
+import { IBoard } from '../interfaces/board.interface';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
