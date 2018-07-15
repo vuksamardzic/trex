@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BoardCrudService } from '../../../../core/services/board-crud.service';
 import { Router } from '@angular/router';
-import { IBoard } from '../../../../core/interfaces/iboard.interface';
+import { IBoard } from '../../../../core/interfaces/board.interface';
 
 @Component({
   selector: 't-board-content',
@@ -19,25 +19,25 @@ export class BoardContentComponent implements OnInit {
   editBoard(): void {
     if (this.editing) {
       this.editing = false;
-      this.boardCrudService.execEditBoard(this.board.id, this.board.name);
+      this.boardCrudService.execEditBoard(this.board._id, this.board.name);
     }
   }
 
   checkEnterKeypress(ev: KeyboardEvent): void {
     if (ev.charCode === 13) {
       this.editing = false;
-      this.boardCrudService.execEditBoard(this.board.id, this.board.name);
+      this.boardCrudService.execEditBoard(this.board._id, this.board.name);
     }
   }
 
   navigateToBoard(): void {
-    this.router.navigate([ '/lists', this.board.id ])
+    this.router.navigate([ '/lists', this.board._id ])
       .catch((err) => {
         console.log(err);
       });
   }
 
   deleteBoard(): void {
-    this.boardCrudService.execDeleteBoard(this.board.id);
+    this.boardCrudService.execDeleteBoard(this.board._id);
   }
 }

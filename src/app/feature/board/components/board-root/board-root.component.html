@@ -1,25 +1,31 @@
-<div class="board-root">
-  <h2>
-    <i class="icon-board"></i>Boards</h2>
-  <p (click)="toggleBoardForm()" *ngIf="!showBoardFrom">Create new board
-    <i class="icon-add"></i>
-  </p>
-  <p (click)="toggleBoardForm()" *ngIf="showBoardFrom">Hide board form
-    <i class="icon-up"></i>
-  </p>
-  <form *ngIf="showBoardFrom"
-        #boardForm="ngForm"
-        autocomplete="off"
-        novalidate
-        (submit)="submitBoardForm(boardForm)">
-    <input type="text"
-           name="board-name"
-           ngModel
-           title="board-name">
-    <input type="submit" value="Create">
-  </form>
-  <ul [ngClass]="{'hide': boardCrudService.loader}">
-    <li *ngFor="let board of boardCrudService.boards">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>
+        <i class="icon-board"></i>Boards</h2>
+      <p (click)="toggleBoardForm()" *ngIf="!showBoardFrom">Create new board
+        <i class="icon-add"></i>
+      </p>
+      <p (click)="toggleBoardForm()" *ngIf="showBoardFrom">Hide board form
+        <i class="icon-up"></i>
+      </p>
+      <form *ngIf="showBoardFrom"
+            #boardForm="ngForm"
+            autocomplete="off"
+            novalidate
+            (submit)="submitBoardForm(boardForm)">
+        <input type="text"
+               name="board-name"
+               ngModel
+               title="board-name">
+        <input type="submit" value="Create">
+      </form>
+    </div>
+  </div>
+  <ul [ngClass]="{'hide': boardCrudService.loader}"
+      class="row p-0 my-0">
+    <li *ngFor="let board of boardCrudService.boards"
+        class="col-12 col-sm-6 col-md-4 col-lg-3">
       <t-board-content [board]="board"></t-board-content>
     </li>
   </ul>
