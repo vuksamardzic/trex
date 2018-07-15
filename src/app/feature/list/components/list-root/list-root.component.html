@@ -1,5 +1,51 @@
-<div class="list-root">
-  <h2>
-    <i class="icon-board"></i>{{ board.name }}
-  </h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>
+        <i class="icon-board"></i>{{ board.name }}
+      </h2>
+      <p (click)="showListForm = !showListForm" *ngIf="!showListForm">Create new list
+        <i class="icon-add"></i>
+      </p>
+      <p (click)="showListForm = !showListForm" *ngIf="showListForm">Hide list form
+        <i class="icon-up"></i>
+      </p>
+      <form #listForm="ngForm"
+            *ngIf="showListForm"
+            (submit)="onListSubmit(listForm)"
+            autocomplete="off"
+            novalidate>
+        <input type="text"
+               title="list-name"
+               ngModel
+               name="name">
+        <input type="submit" value="Create">
+      </form>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+         *ngFor="let list of board.lists">
+      <div style="background-color: #e7e9ea;padding: 10px 15px;margin-bottom: 20px;">
+        <span style="color: #5f6669; font-weight: 600;">{{ list.name }}</span>
+        <ul class="m-0 p-0">
+          <li>
+            <form #cardForm="ngForm"
+                  (submit)="onCardSubmit(cardForm, list._id)"
+                  novalidate
+                  class="inner-form"
+                  autocomplete="off">
+              <input type="text"
+                     title="card-name"
+                     ngModel
+                     placeholder="add card.."
+                     name="name">
+            </form>
+          </li>
+          <li *ngFor="let card of list.cards">{{ card.name }} {{ card.done }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
